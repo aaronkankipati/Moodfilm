@@ -18,7 +18,15 @@
   --space:#06060e;--nebula-v:#241a47;--nebula-r:#3a1f33;--nebula-b:#16234d;
 }
 html{scroll-behavior:smooth}
-body{font-family:'Outfit',sans-serif;background:radial-gradient(125% 85% at 50% -8%,#0e0a22 0%,#09071328 38%,var(--space) 72%,#040409 100%);color:var(--paper);overflow-x:hidden;line-height:1.6}
+body{font-family:'Outfit',sans-serif;color:var(--paper);overflow-x:hidden;line-height:1.6;
+  background:
+    radial-gradient(52% 44% at 22% 26%, hsla(262,58%,32%,.20), transparent 70%),
+    radial-gradient(46% 40% at 82% 18%, hsla(16,62%,36%,.16), transparent 70%),
+    radial-gradient(58% 52% at 64% 78%, hsla(222,60%,32%,.15), transparent 72%),
+    radial-gradient(40% 38% at 8% 86%, hsla(300,48%,32%,.12), transparent 70%),
+    radial-gradient(44% 40% at 92% 64%, hsla(190,55%,34%,.10), transparent 72%),
+    radial-gradient(130% 90% at 50% -10%, #0f0a26 0%, #0a0717 36%, #06060f 70%, #040408 100%);
+  background-attachment:scroll;}
 
 /* ══ GALAXY BACKDROP ══ */
 #galaxy{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;display:block}
@@ -63,6 +71,11 @@ nav.scrolled{padding:11px 48px;background:rgba(11,11,15,.94)}
 .nav-cta::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.28),transparent 70%);transform:translateX(-100%);transition:transform .55s ease}
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,137,90,.35)}
 .nav-cta:hover::before{transform:translateX(100%)}
+/* Coming-soon status chips */
+.nav-soon{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid rgba(200,137,90,.28);border-radius:100px;font-size:12px;font-weight:500;letter-spacing:.05em;color:var(--gold-l);background:rgba(200,137,90,.06);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.dot-live{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(200,137,90,.5);animation:livePulse 2.2s infinite}
+@keyframes livePulse{0%{box-shadow:0 0 0 0 rgba(200,137,90,.45)}70%{box-shadow:0 0 0 7px rgba(200,137,90,0)}100%{box-shadow:0 0 0 0 rgba(200,137,90,0)}}
+.cta-pill{display:inline-flex;align-items:center;gap:8px;padding:7px 18px;border:1px solid rgba(200,137,90,.3);border-radius:100px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-l);background:rgba(200,137,90,.06);margin-bottom:24px}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 24px 80px;position:relative;text-align:center;overflow:hidden}
@@ -70,15 +83,17 @@ nav.scrolled{padding:11px 48px;background:rgba(11,11,15,.94)}
 /* 3D floating film posters */
 .film-field{position:absolute;inset:0;z-index:1;pointer-events:none;perspective:1100px;transform-style:preserve-3d;overflow:hidden}
 .film-field-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.3,1)}
-.film-card{position:absolute;width:118px;height:172px;border-radius:11px;overflow:hidden;
+.film-card{position:absolute;border-radius:12px;overflow:hidden;
   border:1px solid rgba(200,137,90,.22);
-  box-shadow:0 34px 80px rgba(0,0,0,.62),0 0 30px rgba(200,137,90,.05),0 1px 0 rgba(255,255,255,.06) inset;
+  box-shadow:0 24px 60px rgba(0,0,0,.55),0 0 24px rgba(200,137,90,.05),0 1px 0 rgba(255,255,255,.06) inset;
   opacity:0;will-change:transform,opacity;transform-style:preserve-3d;
-  display:flex;flex-direction:column;justify-content:flex-end;padding:10px;}
-.film-card::after{content:'';position:absolute;inset:0;background:linear-gradient(165deg,rgba(255,255,255,.07),transparent 45%);pointer-events:none}
-.film-card .fc-rating{position:absolute;top:8px;right:8px;font-size:9px;font-weight:600;color:var(--gold-l);background:rgba(0,0,0,.45);border:1px solid rgba(200,137,90,.3);border-radius:6px;padding:2px 6px;letter-spacing:.04em}
-.film-card .fc-genre{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(237,232,226,.55);margin-bottom:3px}
-.film-card .fc-title{font-family:'Cormorant Garamond',serif;font-size:15px;line-height:1.05;color:var(--paper)}
+  display:flex;flex-direction:column;gap:5px;padding:12px 14px;
+  width:max-content;max-width:150px;}
+.film-card::after{content:'';position:absolute;inset:0;background:linear-gradient(165deg,rgba(255,255,255,.07),transparent 50%);pointer-events:none}
+.fc-top{display:flex;align-items:center;gap:8px}
+.film-card .fc-rating{font-size:9px;font-weight:600;color:var(--gold-l);background:rgba(0,0,0,.4);border:1px solid rgba(200,137,90,.3);border-radius:6px;padding:2px 6px;letter-spacing:.04em;white-space:nowrap}
+.film-card .fc-genre{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,232,226,.6);white-space:nowrap}
+.film-card .fc-title{font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1.1;color:var(--paper);white-space:nowrap}
 .hero-content{position:relative;z-index:2}
 .hero-rule{width:1px;height:60px;background:linear-gradient(to bottom,transparent,var(--gold-d));margin:0 auto 32px;opacity:.5;animation:fadeDown .8s .2s both}
 .hero-badge{
@@ -159,8 +174,7 @@ h1.hero-title em{color:var(--gold);font-style:italic;font-weight:400}
 /* FEATURES */
 .features-bg{background:rgba(13,11,26,.6)}
 .feature-row{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1100px;margin:0 auto}
-.feature-row.reverse{direction:rtl}
-.feature-row.reverse>*{direction:ltr}
+.feature-row.reverse{flex-direction:row-reverse}
 .feature-tag{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:8px}
 .feature-tag::before{content:'';width:20px;height:1px;background:var(--gold);display:block}
 .feature-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);font-weight:300;line-height:1.1;color:var(--paper);margin-bottom:20px}
@@ -299,12 +313,48 @@ footer a:hover{color:var(--gold)}
 @media(max-width:768px){
   nav{padding:14px 20px}
   nav.scrolled{padding:10px 20px}
+  .section{padding:72px 20px}
   .feature-row{grid-template-columns:1fr;gap:40px}
   .feature-row.reverse{direction:ltr}
-  .problem-grid{grid-template-columns:1fr}
-  .tech-grid{grid-template-columns:1fr}
-  footer{flex-direction:column;gap:12px;text-align:center}
+  footer{flex-direction:column;gap:16px;text-align:center}
+  footer>div:last-child{text-align:center!important}
   .genre-grid{grid-template-columns:1fr 1fr}
+
+  /* hero: lighter, less crowded */
+  .hero{padding:108px 20px 72px}
+  .film-card{max-width:120px;padding:9px 11px;border-radius:10px}
+  .film-card .fc-title{font-size:12px}
+  .film-card .fc-genre{font-size:8px}
+  .film-card .fc-rating{font-size:8px;padding:1px 4px}
+  #film-field-inner .film-card:nth-child(n+6){display:none}
+
+  /* PROBLEM + TECH become swipeable carousels instead of an endless list */
+  .problem-grid,.tech-grid{
+    display:flex;grid-template-columns:none;gap:14px;margin-top:40px;
+    overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    padding:4px 20px 18px;margin-left:-20px;margin-right:-20px;
+    scrollbar-width:none;
+  }
+  .problem-grid::-webkit-scrollbar,.tech-grid::-webkit-scrollbar{display:none}
+  .problem-grid>*,.tech-grid>*{
+    flex:0 0 80%;max-width:300px;scroll-snap-align:center;
+    /* defeat reveal-offset so off-screen carousel cards aren't stuck invisible */
+    opacity:1!important;transform:none!important;
+  }
+  .tech-card{padding:30px 26px}
+
+  /* swipe hint */
+  .swipe-hint{display:flex!important}
+}
+.swipe-hint{display:none;align-items:center;gap:7px;justify-content:center;margin-top:14px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.swipe-hint svg{animation:swipeNudge 1.8s ease-in-out infinite}
+@keyframes swipeNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(7px)}}
+
+@media(max-width:480px){
+  h1.hero-title{font-size:clamp(40px,12vw,60px)}
+  .section-title{font-size:clamp(28px,8vw,40px)}
+  .problem-grid>*,.tech-grid>*{flex:0 0 84%}
 }
 
 /* ══ SHOWCASE SECTION ══ */
@@ -429,6 +479,12 @@ footer a:hover{color:var(--gold)}
   .phone-left,.phone-right{display:none}
   .phone-center{width:230px;height:399px}
 }
+
+/* ══ REDUCED MOTION ══ */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
 </style>
 </head>
 <body>
@@ -440,7 +496,7 @@ footer a:hover{color:var(--gold)}
     <svg viewBox="0 0 28 28" fill="none"><rect x="1" y="1" width="26" height="26" rx="6" stroke="#C8895A" stroke-width="1.4"/><circle cx="14" cy="14" r="6" stroke="#C8895A" stroke-width="1.4"/><circle cx="14" cy="14" r="2" fill="#C8895A"/><rect x="3" y="3" width="4" height="4" rx="1" fill="#C8895A" opacity=".4"/><rect x="21" y="3" width="4" height="4" rx="1" fill="#C8895A" opacity=".4"/><rect x="3" y="21" width="4" height="4" rx="1" fill="#C8895A" opacity=".4"/><rect x="21" y="21" width="4" height="4" rx="1" fill="#C8895A" opacity=".4"/></svg>
     Moodfilm
   </a>
-  <a href="https://aaronkankipati.github.io/Moodfilm1/" class="nav-cta" target="_blank">Try It Free →</a>
+  <span class="nav-soon"><span class="dot-live"></span>Coming Soon</span>
 </nav>
 
 <section class="hero" id="hero">
@@ -452,10 +508,6 @@ footer a:hover{color:var(--gold)}
     <h1 class="hero-title" id="hero-title">The right film for<br><em>this exact feeling.</em></h1>
     <p class="hero-sub" id="hero-sub">Not what's trending. Not what the algorithm pushed.<br>The film your mood has been waiting for.</p>
     <div class="hero-actions">
-      <a href="https://aaronkankipati.github.io/Moodfilm1/" class="btn-primary js-btn" target="_blank">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" fill="currentColor"/></svg>
-        Find My Film
-      </a>
       <a href="#problem" class="btn-ghost">Why Moodfilm? ↓</a>
     </div>
   </div>
@@ -495,6 +547,7 @@ footer a:hover{color:var(--gold)}
         <p>Some of the most emotionally precise films ever made are in Telugu, Tamil, Hindi, or Korean — but they rarely surface unless you already know to look.</p>
       </div>
     </div>
+    <div class="swipe-hint">Swipe<svg width="22" height="10" viewBox="0 0 22 10" fill="none"><path d="M1 5h18m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   </div>
 </section>
 
@@ -731,6 +784,7 @@ footer a:hover{color:var(--gold)}
       <div class="tech-card reveal reveal-delay-1" data-tilt><span class="tech-icon">🔐</span><div class="tech-title">Identity Without a Sign-Up</div><div class="tech-desc">No account, no email, no password — ever. Your credits and preferences are quietly tied to your device, so the app remembers you across visits without you ever having to tell it who you are.</div><div class="tech-badge">Passwordless</div></div>
       <div class="tech-card reveal reveal-delay-2" data-tilt><span class="tech-icon">🎨</span><div class="tech-title">A Mood You Can See</div><div class="tech-desc">Every colour, glow, and gradient on screen is driven by a handful of live style variables that the app rewrites in real time from your detected mood. No images, no heavy graphics — just type, paired serif and sans fonts, and the browser doing what it's quietly brilliant at.</div><div class="tech-badge">CSS Theme Engine</div></div>
     </div>
+    <div class="swipe-hint">Swipe<svg width="22" height="10" viewBox="0 0 22 10" fill="none"><path d="M1 5h18m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   </div>
 </section>
 
@@ -738,9 +792,10 @@ footer a:hover{color:var(--gold)}
   <canvas id="cta-canvas"></canvas>
   <div class="cta-inner">
     <div class="reveal">
+      <div class="cta-pill"><span class="dot-live"></span>Currently in testing</div>
       <h2 class="cta-title">Tell us how you feel.<br>We'll find <em>the film.</em></h2>
-      <p class="cta-sub">Free to try. No sign-up. Just your mood and a blank text box.</p>
-      <a href="https://aaronkankipati.github.io/Moodfilm1/" class="btn-primary js-btn" target="_blank" style="font-size:15px;padding:18px 40px">Open Moodfilm →</a>
+      <p class="cta-sub">No sign-up. Just your mood and a blank text box.<br>Moodfilm is in private testing — public launch coming soon.</p>
+      <a href="https://aaronkankipati.github.io/Moodfilm1/" class="btn-primary js-btn" target="_blank" style="font-size:15px;padding:18px 42px">Coming Soon →</a>
     </div>
   </div>
 </section>
@@ -751,12 +806,11 @@ footer a:hover{color:var(--gold)}
     <div style="font-family:'Lora',serif;font-style:italic;color:var(--muted);font-size:12px;max-width:240px">The right film for this exact feeling.</div>
   </div>
   <div style="display:flex;gap:24px">
-    <a href="https://aaronkankipati.github.io/Moodfilm1/" target="_blank">Open App</a>
     <a href="#problem">About</a>
     <a href="#showcase">Experience</a>
     <a href="#tech">Tech</a>
   </div>
-  <div style="text-align:right">© 2025 Moodfilm<br><span style="font-size:11px;opacity:.7">Find movies by mood.</span></div>
+  <div style="text-align:right">© 2026 Moodfilm<br><span style="font-size:11px;opacity:.7">Find movies by mood.</span></div>
 </footer>
 
 <script>
@@ -789,6 +843,7 @@ function initFluidCanvas(id, opts) {
   ];
 
   let t = 0;
+  let _afId = null;
   function draw() {
     t += .007;
     ctx.clearRect(0,0,W,H);
@@ -819,7 +874,7 @@ function initFluidCanvas(id, opts) {
       const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.sqrt(dx*dx+dy*dy);
       if(d<85){ ctx.beginPath(); ctx.strokeStyle=`rgba(200,137,90,${(.038*(1-d/85)).toFixed(3)})`; ctx.lineWidth=.5; ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.stroke(); }
     }
-    requestAnimationFrame(draw);
+    _afId = requestAnimationFrame(draw);
   }
   draw();
 }
@@ -831,14 +886,15 @@ initFluidCanvas('cta-canvas',{count:48,hue:200});
   const canvas=document.getElementById('galaxy');
   if(!canvas) return;
   const ctx=canvas.getContext('2d');
-  let W,H,DPR=Math.min(window.devicePixelRatio||1,2);
+  const isMobile=matchMedia('(max-width:768px)').matches;
+  let W,H,DPR=Math.min(window.devicePixelRatio||1, isMobile?1.5:2);
   const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let stars=[],nebulae=[],shooters=[],scrollY=window.scrollY,mx=0,my=0;
+  let stars=[],shooters=[],scrollY=window.scrollY,mx=0,my=0;
   function build(){
     W=canvas.width=innerWidth*DPR; H=canvas.height=innerHeight*DPR;
     canvas.style.width=innerWidth+'px'; canvas.style.height=innerHeight+'px';
     const area=innerWidth*innerHeight;
-    const count=Math.min(360,Math.round(area/4200));
+    const count=Math.min(isMobile?170:360,Math.round(area/4200));
     stars=[];
     for(let i=0;i<count;i++){
       const depth=Math.random();           // 0 far .. 1 near
@@ -847,18 +903,13 @@ initFluidCanvas('cta-canvas',{count:48,hue:200});
         z:depth, r:(depth*1.6+.25)*DPR,
         base:.25+depth*.6,
         tw:Math.random()*Math.PI*2, tws:.6+Math.random()*1.6,
-        // warm gold for near stars, cool blue-white for far
+        dvx:(Math.random()-.5)*.05, dvy:(.02+Math.random()*.05),
+        wp:Math.random()*Math.PI*2, ws:.15+Math.random()*.25,
         h: depth>.55? 32+Math.random()*12 : 210+Math.random()*40,
         s: depth>.55? 60 : 30,
         l: 70+Math.random()*20
       });
     }
-    nebulae=[
-      {x:.24,y:.30,r:.55,h:262,s:55,l:30,a:.16},   // violet
-      {x:.80,y:.22,r:.48,h:18,s:60,l:34,a:.13},    // terracotta
-      {x:.62,y:.74,r:.6,h:222,s:58,l:30,a:.12},    // deep blue
-      {x:.10,y:.82,r:.42,h:300,s:45,l:30,a:.10}    // magenta hint
-    ];
   }
   build();
   addEventListener('resize',build);
@@ -874,29 +925,26 @@ initFluidCanvas('cta-canvas',{count:48,hue:200});
   function frame(){
     t+=.016; sinceShoot++;
     ctx.clearRect(0,0,W,H);
-    // nebulae (parallax with mouse, very subtle)
-    nebulae.forEach((n,i)=>{
-      const px=(mx*(i%2?-1:1))*24*DPR, py=(my*(i%2?1:-1))*24*DPR;
-      const cx=n.x*W+px, cy=n.y*H+py, rr=n.r*Math.max(W,H);
-      const g=ctx.createRadialGradient(cx,cy,0,cx,cy,rr);
-      g.addColorStop(0,`hsla(${n.h},${n.s}%,${n.l}%,${n.a})`);
-      g.addColorStop(.5,`hsla(${n.h},${n.s}%,${n.l}%,${n.a*.4})`);
-      g.addColorStop(1,'transparent');
-      ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
-    });
-    // stars (depth parallax: near stars drift more with scroll & mouse)
+    // stars (calm autonomous drift + depth parallax from scroll & mouse)
     for(const st of stars){
+      if(!reduce){
+        st.x += (st.dvx + Math.sin(t*st.ws+st.wp)*.04) * st.z * DPR;
+        st.y += st.dvy * (.4 + st.z) * DPR;
+      }
+      const spanX=W, spanY=H*1.4;
+      // wrap so the field is endless and seamless
+      if(st.x<0) st.x+=spanX; else if(st.x>spanX) st.x-=spanX;
+      if(st.y<0) st.y+=spanY; else if(st.y>spanY) st.y-=spanY;
       const par=st.z*0.18;
       let y=st.y - scrollY*DPR*par;
-      const span=H*1.4;
-      y=((y%span)+span)%span;
+      y=((y%spanY)+spanY)%spanY;
       const x=st.x + mx*st.z*30*DPR;
       const tw=reduce?1:(.55+.45*Math.sin(t*st.tws+st.tw));
       ctx.beginPath();
       ctx.arc(x,y,st.r,0,Math.PI*2);
       ctx.fillStyle=`hsla(${st.h},${st.s}%,${st.l}%,${(st.base*tw).toFixed(3)})`;
       ctx.fill();
-      if(st.z>.8){ // glow for the brightest near stars
+      if(st.z>.8){
         ctx.beginPath(); ctx.arc(x,y,st.r*2.6,0,Math.PI*2);
         ctx.fillStyle=`hsla(${st.h},${st.s}%,${st.l}%,${(st.base*tw*.12).toFixed(3)})`; ctx.fill();
       }
@@ -931,32 +979,36 @@ initFluidCanvas('cta-canvas',{count:48,hue:200});
     {g:'Romance',t:'Letters We Never Sent',r:'8.1',hue:338},
     {g:'Sci-Fi',t:'Edge of the Quiet',r:'8.9',hue:212},
     {g:'Comedy',t:'Almost Everything',r:'7.8',hue:42},
+    {g:'Hindi',t:'Chand Ke Paar',r:'8.7',hue:28},
+    {g:'Telugu',t:'Vennela Raatri',r:'8.5',hue:268},
+    {g:'Tamil',t:'Nilavu Vanthadhu',r:'8.8',hue:172},
     {g:'Thriller',t:'No Witnesses',r:'8.4',hue:258},
-    {g:'Animation',t:'Paper Skies',r:'9.0',hue:190},
-    {g:'Mystery',t:'The Tenth Floor',r:'8.2',hue:150}
+    {g:'Korean',t:'Paper Skies',r:'9.0',hue:190}
   ];
-  // depth layout: x%, y%, z(px), baseRot
+  // each card orbits calmly around an anchor point. ox/oy = anchor %, z = depth,
+  // rad = orbit radius (px), sp = angular speed, ph = start phase, dir = spin direction
   const layout=[
-    {x:14,y:24,z:-360,rx:6,ry:18},
-    {x:80,y:18,z:-300,rx:-5,ry:-16},
-    {x:8,y:70,z:-220,rx:-7,ry:14},
-    {x:88,y:66,z:-260,rx:6,ry:-20},
-    {x:30,y:84,z:-150,rx:-4,ry:8},
-    {x:66,y:80,z:-180,rx:5,ry:-10},
-    {x:50,y:12,z:-420,rx:8,ry:0}
+    {ox:16,oy:26,z:-360,rad:26,sp:.16,ph:0.0,dir:1},
+    {ox:82,oy:20,z:-300,rad:30,sp:.13,ph:1.1,dir:-1},
+    {ox:10,oy:68,z:-220,rad:24,sp:.18,ph:2.0,dir:1},
+    {ox:88,oy:64,z:-260,rad:28,sp:.14,ph:3.2,dir:-1},
+    {ox:28,oy:84,z:-150,rad:22,sp:.20,ph:0.6,dir:1},
+    {ox:50,oy:90,z:-200,rad:26,sp:.15,ph:4.0,dir:-1},
+    {ox:70,oy:82,z:-180,rad:24,sp:.17,ph:1.7,dir:1},
+    {ox:50,oy:12,z:-420,rad:32,sp:.11,ph:2.6,dir:-1},
+    {ox:90,oy:40,z:-330,rad:28,sp:.12,ph:5.0,dir:1}
   ];
   films.forEach((f,i)=>{
     const L=layout[i%layout.length];
     const el=document.createElement('div');
     el.className='film-card';
-    el.style.left=L.x+'%'; el.style.top=L.y+'%';
+    el.style.left=L.ox+'%'; el.style.top=L.oy+'%';
     el.style.background=`linear-gradient(160deg,hsl(${f.hue},42%,26%),hsl(${(f.hue+30)%360},38%,12%))`;
-    el.dataset.z=L.z; el.dataset.rx=L.rx; el.dataset.ry=L.ry;
-    el.dataset.fx=(Math.random()*Math.PI*2); el.dataset.fs=(.4+Math.random()*.5);
-    el.innerHTML=`<span class="fc-rating">★ ${f.r}</span><span class="fc-genre">${f.g}</span><span class="fc-title">${f.t}</span>`;
+    el.dataset.z=L.z; el.dataset.rad=L.rad; el.dataset.sp=L.sp; el.dataset.ph=L.ph; el.dataset.dir=L.dir;
+    el.innerHTML=`<div class="fc-top"><span class="fc-rating">★ ${f.r}</span><span class="fc-genre">${f.g}</span></div><span class="fc-title">${f.t}</span>`;
     inner.appendChild(el);
     // staggered reveal
-    setTimeout(()=>{el.style.transition='opacity 1.2s ease'; el.style.opacity=(.5 - i*0.03).toFixed(2);}, 700+i*140);
+    setTimeout(()=>{el.style.transition='opacity 1.2s ease'; el.style.opacity=(.52 - i*0.02).toFixed(2);}, 700+i*130);
   });
   const cards=[...inner.querySelectorAll('.film-card')];
   let mx=0,my=0,tmx=0,tmy=0,t=0;
@@ -972,11 +1024,19 @@ initFluidCanvas('cta-canvas',{count:48,hue:200});
     // parent tilt for cohesion
     inner.style.transform=`rotateX(${(-my*7).toFixed(2)}deg) rotateY(${(mx*9).toFixed(2)}deg)`;
     cards.forEach(c=>{
-      const z=+c.dataset.z, rx=+c.dataset.rx, ry=+c.dataset.ry;
+      const z=+c.dataset.z;
       const depth=(z+420)/420; // 0 far .. 1 near
-      const floatY=reduce?0:Math.sin(t*(+c.dataset.fs)+(+c.dataset.fx))*10*(1-depth*.5);
+      const rad=+c.dataset.rad, sp=+c.dataset.sp, ph=+c.dataset.ph, dir=+c.dataset.dir;
+      // calm circular orbit around the anchor
+      const ang=t*sp*dir+ph;
+      const ox=reduce?0:Math.cos(ang)*rad;
+      const oy=reduce?0:Math.sin(ang)*rad;
+      // mouse parallax (far cards drift more)
       const px=mx*(1-depth)*60, py=my*(1-depth)*60;
-      c.style.transform=`translate(-50%,-50%) translateZ(${z}px) translate(${px.toFixed(1)}px,${(py+floatY).toFixed(1)}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      // a touch of face-tilt that follows the orbit, so they feel like they bank into the curve
+      const tiltY=reduce?0:Math.cos(ang)*8*dir;
+      const tiltX=reduce?0:Math.sin(ang)*5;
+      c.style.transform=`translate(-50%,-50%) translateZ(${z}px) translate(${(px+ox).toFixed(1)}px,${(py+oy).toFixed(1)}px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg)`;
     });
     requestAnimationFrame(loop);
   }
@@ -1170,10 +1230,12 @@ window.addEventListener('scroll',()=>{
     imgCenter.classList.add('exiting');
     setTimeout(() => {
       imgCenter.classList.remove('exiting');
-      imgCenter.classList.add('entering');
       setScreens(idx);
+      imgCenter.classList.add('entering');
       requestAnimationFrame(() => {
-        imgCenter.classList.remove('entering');
+        requestAnimationFrame(() => {
+          imgCenter.classList.remove('entering');
+        });
       });
     }, 200);
     current = idx;
